@@ -50,17 +50,6 @@ class FaceRecognitionSystem:
             filepath = os.path.join(output_dir, filename)
             cv2.imwrite(filepath, img)
 
-        # print(f"✅ Đã lưu ảnh vào thư mục tạm: {output_dir}")
-
-        # new_name = input("Nhập tên người: ")
-        # new_folder_path = os.path.join(self.dataset_path, new_name)
-
-        # if os.path.exists(new_folder_path):
-        #     print(f"⚠️ Thư mục '{new_folder_path}' đã tồn tại.")
-        # else:
-        #     os.rename(output_dir, new_folder_path)
-        #     print(f"✅ Đã đổi tên thư mục thành: {new_folder_path}")
-
     def train_model(self):
         print("🔧 Bắt đầu huấn luyện dữ liệu khuôn mặt...")
         folders = [f for f in os.listdir(self.dataset_path) if os.path.isdir(os.path.join(self.dataset_path, f))]
@@ -152,6 +141,7 @@ class FaceRecognitionSystem:
                     print(f"✅ Phát hiện cùng một người: {recognized_sequence[0]}")
                     if on_recognized_callback:
                         on_recognized_callback()
+                    break
                 else:
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                     filename = f"unknown_{timestamp}.png"
@@ -184,3 +174,4 @@ class FaceRecognitionSystem:
 if __name__ == "__main__":
     frs = FaceRecognitionSystem()
     frs.recognize_faces()
+    

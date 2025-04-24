@@ -28,7 +28,7 @@ def OpenDoor():
     reg_flag = False
     sender.send_signal(1)
     print("Đã mở cửa")
-
+    
 def CloseDoor():
     global close_door
     close_door = False
@@ -46,11 +46,16 @@ while True:
         print("Đang tiến hành đăng ký khuôn mặt...")
         face_reg_system.recognize_faces(on_recognized_callback=OpenDoor)
         time.sleep(1)
+        if reg_flag:
+            print("Không mở cửa")
+            reg_flag = False
+
     if add_flag:
         print("Đang tiến hành thêm khuôn mặt...")
         face_reg_system.capture_images()
         face_reg_system.train_model()
         add_flag = False
+        
     if close_door:
         CloseDoor()
 
