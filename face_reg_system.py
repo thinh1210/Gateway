@@ -101,7 +101,7 @@ class FaceRecognitionSystem:
         unknown_dir = os.path.join(self.dataset_path, "unknown")
         os.makedirs(unknown_dir, exist_ok=True)
         count =0 
-        max_count = 20
+        max_count = 1000
         while count<max_count:
             count += 1
             ret, frame = video.read()
@@ -173,6 +173,6 @@ class FaceRecognitionSystem:
 # 👉 Sử dụng:
 if __name__ == "__main__":
     frs = FaceRecognitionSystem(dataset_path=r"C:\Users\Divu\Desktop\DADN\detect_face\extracted_faces")
-    #frs.train_model()
+    # frs.train_model()
     frs.recognize_faces()
     
